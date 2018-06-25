@@ -11,19 +11,20 @@ public class SistemaDeApostas {
 		 *  Operacoes realacionadas a Cenario
 		 */
 		
-		operacao.cadastrarCenario("RED vai ganhar o mundial ",101);
+		operacao.cadastrarCenario("RED vai ganhar o mundial ",1000);
 		operacao.cadastrarCenario("RED vai ganhar o mundial ",10);
 		operacao.cadastrarCenario("As provas vao ser corrigidas ate sexta",1000); 
 		operacao.cadastrarCenario("As provas nao vao ser corrigidas ate sexta",10);
-		System.out.println(operacao.exibirCenario(4));
+		System.out.println(operacao.exibirCenario(1));
 		System.out.println();
 		System.out.println(operacao.listarCenarios());
 		
 		/**
 		 * Operacoes relacionadas a Aposta
 		 */
-		operacao.cadastrarAposta(1, "Matheus Patriota", 10000, "VAI ACONTECER");
-		operacao.cadastrarAposta(1, "Matheus Patriota", 50, "N VAI ACONTECER");
+		operacao.cadastrarAposta(1, "Matheus Patriota", 1000, "VAI ACONTECER");
+		operacao.cadastrarApostaSeguraValor(1, "Homer simpson", 1000, "VAI ACONTECER", 200, 50);
+		operacao.cadastrarApostaSeguraTaxa(1, "Marge simpson", 500, "VAI ACONTECER", 5, 50);
 		operacao.cadastrarAposta(2, "Matheus Patriota", 50, "VAI ACONTECER");
 		operacao.cadastrarAposta(2, "Matheus Patriota", 10000, "N VAI ACONTECER");
 		System.out.println(operacao.valorTotalDeApostas(1));

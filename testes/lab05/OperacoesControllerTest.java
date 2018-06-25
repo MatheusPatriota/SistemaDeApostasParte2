@@ -9,7 +9,7 @@ import org.junit.Test;
 public class OperacoesControllerTest {
 
 	private OperacoesController operacao = new OperacoesController();
-	private Apostas aposta;
+	private Aposta aposta;
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testIncializarSistemaComCaixaNegativo() {

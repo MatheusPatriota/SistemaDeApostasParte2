@@ -13,7 +13,7 @@ public class Cenario {
 	
 	protected String descricao;
 	protected String status;
-	private ArrayList<Apostas> arrayDeApostas;
+	private ArrayList<Aposta> arrayDeApostas;
 	private int valorTotalApostas;
 	private int totalDeApostas;
 	protected int rateioCenario;
@@ -56,9 +56,23 @@ public class Cenario {
 	 */
 	public void cadastrarApostas(String apostador, int valor, String previsao) {
 		
-		Apostas aposta = new Apostas(apostador, valor, previsao);
+		Aposta aposta = new Aposta(apostador, valor, previsao);
 		arrayDeApostas.add(aposta);
 				
+	}
+	
+	public void cadastrarApostaSeguraTaxa(String apostador, int valor, String previsao, double taxa, int custo) {
+		
+		Aposta aposta = new ApostaSeguraPorTaxa(apostador, valor, previsao, taxa, custo);
+		arrayDeApostas.add(aposta);
+		
+	}
+	
+	public void cadastrarApostaSeguraValor(String apostador, int valor, String previsao, int valorDoResgate, int custo) {
+		
+		Aposta aposta = new ApostaSeguraPorValor(apostador, valor, previsao, valorDoResgate, custo);
+		arrayDeApostas.add(aposta);
+		
 	}
 	
 	public int getRateioCenario() {
@@ -77,7 +91,7 @@ public class Cenario {
 		return totalDeApostas;
 	}
 	
-	public ArrayList<Apostas> getArrayDeApostas() {
+	public ArrayList<Aposta> getArrayDeApostas() {
 		return arrayDeApostas;
 	}
 	

@@ -7,7 +7,7 @@ public class OperacoesFacade {
 	public static void main(String[] args) {
 		
 		args = new String[] {"lab05.OperacoesFacade","acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt",
-		"acceptance_test/us3_test.txt",	"acceptance_test/us4_test.txt", "acceptance_test/us5_test.txt"};
+		"acceptance_test/us3_test.txt",	"acceptance_test/us4_test.txt", "acceptance_test/us5_test.txt", "acceptance_test/us6_test.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -45,6 +45,16 @@ public class OperacoesFacade {
 	public void cadastrarAposta(int numeracaoCenario, String apostador, int valor, String previsao) {
 		
 		operacao.cadastrarApostas(numeracaoCenario, apostador, valor, previsao);
+	}
+	
+	public void cadastrarApostaSeguraTaxa(int numeracaoCenario, String apostador, int valor, String previsao, double taxa, int custo) {
+		
+		operacao.cadastrarApostaSeguraTaxa(numeracaoCenario, apostador, valor, previsao, taxa, custo);
+	}
+	
+	public void cadastrarApostaSeguraValor(int numeracaoCenario, String apostador, int valor, String previsao, int valorDoResgate, int custo) {
+		
+		operacao.cadastrarApostaSeguraValor(numeracaoCenario, apostador, valor, previsao, valorDoResgate, custo);
 	}
 	
 	public int valorTotalDeApostas(int numeracaoCenario) {

@@ -141,6 +141,31 @@ public class OperacoesController {
 		
 	}
 	
+	public void cadastrarApostaSeguraTaxa(int numeracaoCenario, String apostador, int valor, String previsao, double taxa, int custo) {
+		
+		cenarios.get(numeracaoCenario-1).cadastrarApostaSeguraTaxa(apostador, valor, previsao, taxa, custo);
+		caixa += custo * 100;
+		cenarios.get(numeracaoCenario-1).setTotalDeApostas();
+		cenarios.get(numeracaoCenario-1).setValorTotalApostas(valor);
+	}
+	
+	public void cadastrarApostaSeguraValor(int numeracaoCenario, String apostador, int valor, String previsao, int valorDoResgate, int custo) {
+		
+		cenarios.get(numeracaoCenario-1).cadastrarApostaSeguraValor(apostador, valor, previsao, valorDoResgate, custo);
+		caixa += custo * 100;
+		cenarios.get(numeracaoCenario-1).setTotalDeApostas();
+		cenarios.get(numeracaoCenario-1).setValorTotalApostas(valor);
+	}
+	
+	public void alteraSeguroValor(int numeracaoCenario, int apostaAssegurada, int valorDoResgate) {
+		
+		
+	}
+	
+	public void alteraSeguroTaxa(int numeracaoCenario, int apostaAssegurada, double taxa ) {
+		
+	}
+	
 	/**
 	 * metodo responsavel por retornar o total do valor de apostas de um cenario especifico.
 	 * 
@@ -234,6 +259,7 @@ public class OperacoesController {
 				if (cenarios.get(numeracaoCenario-1).getArrayDeApostas().get(i).getPrevisao().equals("N VAI ACONTECER")) {
 					
 					cenarios.get(numeracaoCenario-1).setCaixaCenario(cenarios.get(numeracaoCenario-1).getArrayDeApostas().get(i).getValor());
+					// SE FOR ASSEGURADA DIMINUIR O VALOR ASSEGURADO DO CAIXA DO SISTEMA
 				}
 			}
 			

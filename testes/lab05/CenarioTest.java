@@ -9,7 +9,7 @@ import org.junit.Test;
 public class CenarioTest {
 
 	private Cenario cenario;
-	private Apostas aposta;
+	private Aposta aposta;
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testDescricaoVazia() {
@@ -20,19 +20,19 @@ public class CenarioTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testCadastrarApostaComNomeDoApostadorVazio() {
 		
-		aposta = new Apostas("", 20, "VAI ACONTECER");
+		aposta = new Aposta("", 20, "VAI ACONTECER");
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testCadastrarApostaComPrevisaoVazia() {
 		
-		aposta = new Apostas("Matheus Patriota", 20, "");
+		aposta = new Aposta("Matheus Patriota", 20, "");
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testCadastrarApostaComValorDaApostaNegativo() {
 		
-		aposta = new Apostas("Matheus Patriota", -20, "VAI ACONTECER");
+		aposta = new Aposta("Matheus Patriota", -20, "VAI ACONTECER");
 	}
 	
 	@Test(expected=NullPointerException.class)
@@ -44,13 +44,13 @@ public class CenarioTest {
 	@Test(expected=NullPointerException.class)
 	public void testCadastrarApostaComNomeDoApostadorNulo() {
 		
-		aposta = new Apostas(null, 20, "VAI ACONTECER");
+		aposta = new Aposta(null, 20, "VAI ACONTECER");
 	}
 	
 	@Test(expected=NullPointerException.class)
 	public void testCadastrarApostaComPrevisaoNula() {
 		
-		aposta = new Apostas("Matheus Patriota", 20, null);
+		aposta = new Aposta("Matheus Patriota", 20, null);
 	}
 	
 	@Test

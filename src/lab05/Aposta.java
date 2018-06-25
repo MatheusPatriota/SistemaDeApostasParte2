@@ -7,11 +7,11 @@
 package lab05;
 
 
-public class Apostas {
+public class Aposta {
 	
-	private String apostador;
-	private int valor;
-	private String previsao;
+	protected String apostador;
+	protected int valor;
+	protected String previsao;
 	
 	/**
 	 * Construtor de Apostas responsavel por inicializar sua classe e atributos.
@@ -20,7 +20,7 @@ public class Apostas {
 	 * @param valor - Valor da aposta
 	 * @param previsao - Prever se o cenario vai acontecer ou não
 	 */
-	public Apostas(String apostador, int valor, String previsao) {
+	public Aposta(String apostador, int valor, String previsao) {
 		
 		if (apostador.equals(null) || apostador.equals("")) {
 			
@@ -64,6 +64,7 @@ public class Apostas {
 	public int getValor() {
 		return valor;
 	}
+	
 	
 	/**
 	 * toString para padronizar a exibicao da classe Apostas, usando apostador, valor e previsao.

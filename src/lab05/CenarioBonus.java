@@ -20,10 +20,7 @@ public class CenarioBonus extends Cenario {
 	@Override
 	public String toString() {
 		
-		//4 - As provas vao ser corrigidas ate sexta - Nao finalizado - R$ 10,00
-		//4 - As provas nao vao ser corrigidas ate sexta - Nao finalizado - R$ 10,00
-		
-		return super.toString() + " - R$ " + bonus + ",00";
+		return super.toString() + " - R$ " + bonus/100 + ",00";
 	}
 	
 }
