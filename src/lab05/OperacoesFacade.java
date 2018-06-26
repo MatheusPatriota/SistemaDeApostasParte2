@@ -57,6 +57,17 @@ public class OperacoesFacade {
 		operacao.cadastrarApostaSeguraValor(numeracaoCenario, apostador, valor, previsao, valorDoResgate, custo);
 	}
 	
+	public int alterarSeguroValor(int numeracaoCenario, int apostaAssegurada, int valorDoResgate) {
+		
+		operacao.alterarSeguroValor(numeracaoCenario, apostaAssegurada, valorDoResgate);
+		return 0;
+	}
+	
+	public void alterarSeguroTaxa(int numeracaoCenario, int apostaAssegurada, double taxa ) {
+		
+		operacao.alterarSeguroTaxa(numeracaoCenario, apostaAssegurada, taxa);
+	}
+	
 	public int valorTotalDeApostas(int numeracaoCenario) {
 		
 		return operacao.valorTotalDeApostas(numeracaoCenario);

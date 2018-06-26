@@ -12,6 +12,7 @@ public class Aposta {
 	protected String apostador;
 	protected int valor;
 	protected String previsao;
+	protected boolean assegurado;
 	
 	/**
 	 * Construtor de Apostas responsavel por inicializar sua classe e atributos.
@@ -55,6 +56,7 @@ public class Aposta {
 		this.valor = valor;
 		this.apostador = apostador;
 		this.previsao = previsao;
+		this.assegurado = false;
 	}
 	
 	public String getPrevisao() {
@@ -63,6 +65,10 @@ public class Aposta {
 	
 	public int getValor() {
 		return valor;
+	}
+	
+	public boolean getAssegurado() {
+		return assegurado;
 	}
 	
 	
