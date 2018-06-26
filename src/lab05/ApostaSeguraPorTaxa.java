@@ -7,9 +7,9 @@ public class ApostaSeguraPorTaxa extends Aposta {
 	private boolean asseguradoPorTaxa;
 	
 	public ApostaSeguraPorTaxa(String apostador, int valor, String previsao, double taxa, int custo){
-		
+             
 		super(apostador, valor, previsao);
-		this.taxa = taxa;
+                this.taxa = taxa;
 		this.custo = custo;	
 		assegurado = true;
 		this.asseguradoPorTaxa = true;

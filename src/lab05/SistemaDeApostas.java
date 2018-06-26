@@ -33,7 +33,7 @@ public class SistemaDeApostas {
 		System.out.println(operacao.getCaixa());
 		operacao.alterarSeguroValor(1, 5, 100);
 		operacao.alterarSeguroTaxa(1, 6, 0.02);
-		System.out.println(operacao.getCaixa());
+		System.out.println(operacao.getCaixa());    
 		operacao.fecharAposta(1, false);
 		System.out.println(operacao.getCaixaCenario(1));
 		System.out.println(operacao.getTotalRateioCenario(1));
