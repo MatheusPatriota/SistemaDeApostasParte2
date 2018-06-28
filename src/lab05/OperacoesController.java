@@ -57,6 +57,7 @@ public class OperacoesController {
 	 * parametro uma descricao.
 	 * 
 	 * @param descricao - Descricao de um cenario qualquer que pode ocorrer ou nao.
+	 * @return - retorna a numeracao do cenario cadastrado.
 	 */
 	public int cadastrarCenario(String descricao) {
 		
@@ -67,6 +68,13 @@ public class OperacoesController {
 		
 	}
 	
+	/**
+	 * Cadastra um cenario com bonus.
+	 * 
+	 * @param descricao - Descricao de um cenario possivel.
+	 * @param bonus - Bonus para incentivar as apostas em determinado cenario.
+	 * @return - retorna a numeracao do cenario cadastrado.
+	 */
 	public int cadastrarCenario(String descricao, int bonus) {
 		
 		Cenario cenario = new CenarioBonus(descricao, bonus);
@@ -140,53 +148,66 @@ public class OperacoesController {
 		
 	}
 	
+	/**
+	 * metodo responsavel por cadastrar aposta assegurado por uma taxa.
+	 * 
+	 * @param numeracaoCenario - posicao do cenario onde ira ser cadastrado a apostas.
+	 * @param apostador - Nome do apostador.
+	 * @param valor - Valor a ser apostado.
+	 * @param previsao - Previsao se o cenario ira acontecer ou nao.
+	 * @param taxa - Taxa que incide em cima do valor apostado a ser restituida ao apostador.
+	 * @param custo - custo para fazer uma aposta assegurada.
+	 */
 	public void cadastrarApostaSeguraTaxa(int numeracaoCenario, String apostador, int valor, String previsao, double taxa, int custo) {
 		
-                if (numeracaoCenario <= 0) {
-                
-                    throw  new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
-                }
-                
-                if (numeracaoCenario > cenarios.size()) {
-                
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
-                }
-                if (apostador == null) {
-                    throw new NullPointerException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
-                }
-                
-                if (apostador.equals("")) {
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
-                }
+        if (numeracaoCenario <= 0) {
+        
+            throw  new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
+        }
+        
+        if (numeracaoCenario > cenarios.size()) {
+        
+            throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
+        }
+        
+        if (apostador == null) {
+           
+        	throw new NullPointerException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+        }
+        
+        if (apostador.equals("")) {
+            throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+        }
+        
 		if (valor <= 0) {
 			
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
 		}
 		
 		if (apostador.equals("  ")) {
 			
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+            throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
 		}
 		
 		if (previsao.equals("  ")) {
 			
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
 		}
 		
 		if (previsao.equals("") || previsao == null) {
 			
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
 		}
 		
 		if (!(previsao.equals("VAI ACONTECER") || previsao.equals("N VAI ACONTECER"))) {
 			
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao invalida");
+            throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao invalida");
 		}
                 
-                if (apostador.equals("   ")) {
-                
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
-                }
+        if (apostador.equals("   ")) {
+        
+            throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+        }
                 
 		cenarios.get(numeracaoCenario-1).cadastrarApostaSeguraTaxa(apostador, valor, previsao, taxa, custo);
 		caixa += custo;
@@ -194,65 +215,94 @@ public class OperacoesController {
 		cenarios.get(numeracaoCenario-1).setValorTotalApostas(valor);
 	}
 	
+	
+	/**
+	 * metodo responsavel por cadastrar aposta assegurado por uma valor.
+	 * 
+	 * @param numeracaoCenario - posicao do cenario onde ira ser cadastrado a apostas.
+	 * @param apostador - Nome do apostador.
+	 * @param valor - Valor a ser apostado.
+	 * @param previsao - Previsao se o cenario ira acontecer ou nao.
+	 * @param valor - Valor a ser restituido ao apostador caso ele perca a aposta.
+	 * @param custo - custo para fazer uma aposta assegurada.
+	 */
 	public void cadastrarApostaSeguraValor(int numeracaoCenario, String apostador, int valor, String previsao, int valorDoResgate, int custo) {
-		
-                if (numeracaoCenario <= 0) {
-                
-                    throw  new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Cenario invalido");
-                }
-                
-                if (numeracaoCenario > cenarios.size()) {
-                
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Cenario invalido");
-                }
-                if (apostador == null) {
-                    throw new NullPointerException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
-                }
-                
-                if (apostador.equals("")) {
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
-                }
+
+        if (numeracaoCenario <= 0) {
+        
+            throw  new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Cenario invalido");
+        }
+        
+        if (numeracaoCenario > cenarios.size()) {
+        
+            throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Cenario invalido");
+        }
+        
+        if (apostador == null) {
+        	
+            throw new NullPointerException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+        }
+        
+        if (apostador.equals("")) {
+        	
+            throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+        }
+        
 		if (valor <= 0) {
 			
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Valor nao pode ser menor ou igual a zero");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Valor nao pode ser menor ou igual a zero");
 		}
 		
 		if (apostador.equals("  ")) {
 			
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
 		}
 		
 		if (previsao.equals("  ")) {
 			
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
 		}
 		
 		if (previsao.equals("") || previsao == null) {
 			
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
 		}
 		
 		if (!(previsao.equals("VAI ACONTECER") || previsao.equals("N VAI ACONTECER"))) {
 			
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao invalida");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao invalida");
 		}
                 
-                if (apostador.equals("   ")) {
-                
-                    throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
-                }
+        if (apostador.equals("   ")) {
+        
+            throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+        }
+        
 		cenarios.get(numeracaoCenario-1).cadastrarApostaSeguraValor(apostador, valor, previsao, valorDoResgate, custo);
 		caixa += custo;
 		cenarios.get(numeracaoCenario-1).setTotalDeApostas();
 		cenarios.get(numeracaoCenario-1).setValorTotalApostas(valor);
 	}
 	
+	/**
+	 * metodo responsavel por alterar o valor da aposta assegurada.
+	 * 
+	 * @param numeracaoCenario - numero onde o cenario se encontra
+	 * @param apostaAssegurada - numero onde a aposta assegurada se encontra.
+	 * @param valorDoResgate - valor que o substituira o valor atual do seguro.
+	 */
 	public void alterarSeguroValor(int numeracaoCenario, int apostaAssegurada, int valorDoResgate) {
 		
 		((ApostaSeguraPorValor)cenarios.get(numeracaoCenario-1).getArrayDeApostas().get(apostaAssegurada-1)).setValorDoResgate(valorDoResgate);
 		
 	}
-	
+	/**
+	 * metodo responsavel por alterar a taxa da aposta assegurada.
+	 * 
+	 * @param numeracaoCenario - numero onde o cenario se encontra
+	 * @param apostaAssegurada - numero onde a aposta assegurada se encontra.
+	 * @param taxa - Nova taxa que substituira a antiga.
+	 */
 	public int alterarSeguroTaxa(int numeracaoCenario, int apostaAssegurada, double taxa ) {
 		
 		((ApostaSeguraPorTaxa)cenarios.get(numeracaoCenario-1).getArrayDeApostas().get(apostaAssegurada-1)).setTaxa(taxa);

@@ -4,7 +4,12 @@ package lab05;
 public class CenarioBonus extends Cenario {
 	
 	private int bonus;
-	
+	/**
+	 * Construtor de Cenario bonus responsavel por iniciar a classe e seus atributos.
+	 * 
+	 * @param descricao - Descricao de um cenario possivel.
+	 * @param bonus - bonus para incentivar apostas em determinado cenario.
+	 */
 	public CenarioBonus(String descricao, int bonus) {
 		
 		super(descricao);
@@ -17,6 +22,11 @@ public class CenarioBonus extends Cenario {
 		rateioCenario += bonus;
 	}
 	
+	/**
+	 * toString responsavel por padronizar a exibicao de CenarioBonus
+	 * 
+	 * @return - retorna uma string que representa CenarioBonus
+	 */
 	@Override
 	public String toString() {
 		
